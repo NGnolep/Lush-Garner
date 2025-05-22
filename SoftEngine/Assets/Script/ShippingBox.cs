@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.ComponentModel;
 public class ShippingBox : MonoBehaviour
 {
     public GameObject interactPrompt;
@@ -14,6 +15,8 @@ public class ShippingBox : MonoBehaviour
     private float timer = 0f;
     private float questTime = 60f;
     // Update is called once per frame
+
+    public PlayerGold playerGold;
     void Update()
     {
         if (isInTrigger)
@@ -55,9 +58,12 @@ public class ShippingBox : MonoBehaviour
         questPanel.SetActive(false);
         Time.timeScale = 1f;
 
-        timer = questTime;
-        timerRunning = true;
-        timerText.gameObject.SetActive(true);
+        if (!timerRunning)
+        {
+            timer = questTime;
+            timerRunning = true;
+            timerText.gameObject.SetActive(true);
+        }
     }
 
     void UpdateTimerText()
@@ -80,5 +86,13 @@ public class ShippingBox : MonoBehaviour
         {
             isInTrigger = false;
         }
+    }
+
+    public void CompleteQuest()
+    {
+        timerRunning = false;
+        timerText.gameObject.SetActive(false);
+
+        playerGold.AddGold(100);
     }
 }
