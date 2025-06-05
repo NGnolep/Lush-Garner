@@ -31820,7 +31820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTilemap: {fileID: 1239962852}
-  plantedTile: {fileID: 11400000, guid: 494fcf76397eaa641bb04ad9fcdeb9c9, type: 2}
+  plantedTile: {fileID: 11400000, guid: 313293cb1a8b96d4e88e52d22512ae13, type: 2}
   eText: {fileID: 1560711662}
 --- !u!114 &1903400465
 MonoBehaviour:
