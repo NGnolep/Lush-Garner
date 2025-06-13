@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class QuestRequirement
 {
-    public string itemName;
+    public Item item;
     public int amount;
 }

@@ -8,9 +8,8 @@ public class Quest: ScriptableObject
     public string questName;
     [TextArea]
     public string description;
-    public List<QuestRequirement> requirements;
+    public List<QuestRequirement> requirements = new List<QuestRequirement>();
     public int rewardGold;
-    public bool isCompleted = false;
     public float timeLimit;   
     [HideInInspector]
     public float timeRemaining;        
@@ -18,4 +17,6 @@ public class Quest: ScriptableObject
     public bool isActive = false;       
     [HideInInspector]
     public bool isFailed = false;
+    [HideInInspector]
+    public bool isCompleted = false;
 }
