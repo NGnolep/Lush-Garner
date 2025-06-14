@@ -32392,18 +32392,17 @@ MonoBehaviour:
   timerText: {fileID: 408632764}
   questDescription: {fileID: 1802120038}
   availableQuests:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerGold: {fileID: 0}
+  - {fileID: 11400000, guid: bbd6fcdac685738409eb5024c54b70ee, type: 2}
+  - {fileID: 11400000, guid: 952b577ece3778e4bb31de06ed156316, type: 2}
+  - {fileID: 11400000, guid: 0a5db0137b1ca764db2ca30e148179d1, type: 2}
+  - {fileID: 11400000, guid: a1497b999230e034394403e96ac4c2a2, type: 2}
+  - {fileID: 11400000, guid: 1f336904464acf94db325f9fcbf30e6e, type: 2}
+  - {fileID: 11400000, guid: 999c66ccbd3333f42b01a4a5f1b09281, type: 2}
+  - {fileID: 11400000, guid: 37c6a2f17b362744d8d638b00bdbb719, type: 2}
+  - {fileID: 11400000, guid: 36771140c61435048a3d7b0d1d05b769, type: 2}
+  - {fileID: 11400000, guid: cedaa04be1e1e2e4188a065cad791016, type: 2}
+  - {fileID: 11400000, guid: d4e43f564dbae36479242e6d0dfe93f2, type: 2}
+  playerGold: {fileID: 1903400465}
 --- !u!61 &1542441503
 BoxCollider2D:
   m_ObjectHideFlags: 0
