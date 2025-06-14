@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eafc3188765ed4ebea60e21f2ad280, type: 3}
-  m_Name: AppleDelivery
+  m_Name: C-10_Cn-4
   m_EditorClassIdentifier: 
-  questName: Apple Delivery
-  description: Deliver berapa apple
+  questName: Corny Carrots
+  description: Deliver 10 carrots and 4 corns!
   requirements:
-  - item: {fileID: 0}
-    amount: 0
-  rewardGold: 100
-  timeLimit: 0
+  - item: {fileID: 11400000, guid: 3ea25b82eb5046b48ad59de3649610df, type: 2}
+    amount: 10
+  - item: {fileID: 11400000, guid: 6dd8bc19f47b11742975269cab213d0e, type: 2}
+    amount: 4
+  rewardGold: 1000
+  timeLimit: 180
   timeRemaining: 0
   isActive: 0
   isFailed: 0

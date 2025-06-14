@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eafc3188765ed4ebea60e21f2ad280, type: 3}
+  m_Name: C-20
+  m_EditorClassIdentifier: 
+  questName: Hungry Rabbits
+  description: The Rabbit Shelter requested 20 Carrots!
+  requirements:
+  - item: {fileID: 11400000, guid: 3ea25b82eb5046b48ad59de3649610df, type: 2}
+    amount: 20
+  rewardGold: 1300
+  timeLimit: 240
+  timeRemaining: 0
+  isActive: 0
+  isFailed: 0
+  isCompleted: 0
