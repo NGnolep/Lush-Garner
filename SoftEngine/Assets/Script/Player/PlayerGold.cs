@@ -27,7 +27,7 @@ public class PlayerGold : MonoBehaviour
     {
         if(goldText != null)
         {
-            goldText.text = currentGold.ToString() + "G";
+            goldText.text = currentGold.ToString();
         }
     }
 }
