@@ -7,10 +7,8 @@ public class MinigameManager : MonoBehaviour
 {
     public void ReturnToMainGame()
     {
-        // Unload the minigame scene
-        SceneManager.UnloadSceneAsync("Minigame1");
+        SceneManager.UnloadSceneAsync("Watering");
 
-        // Resume time if it was paused (just in case)
         Time.timeScale = 1f;
     }
 }

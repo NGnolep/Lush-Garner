@@ -57,7 +57,7 @@ public class PlantingMechanics : MonoBehaviour
 
     void LoadMinigame()
     {
-        Time.timeScale = 0f;
-        SceneManager.LoadScene("Minigame1", LoadSceneMode.Additive);
+        //Time.timeScale = 0f;
+        SceneManager.LoadScene("Watering", LoadSceneMode.Additive);
     }
 }
