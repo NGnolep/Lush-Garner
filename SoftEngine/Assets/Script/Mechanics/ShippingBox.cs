@@ -11,9 +11,9 @@ public class ShippingBox : MonoBehaviour
     public TextMeshProUGUI questDescription;
 
     private bool isInTrigger = false;
-    private bool timerRunning = false;
-    private float timer = 0f;
-    private float questTime = 60f;
+
+    public List<Quest> availableQuests;
+    private Quest currentQuest;
     // Update is called once per frame
 
     public PlayerGold playerGold;
@@ -33,13 +33,22 @@ public class ShippingBox : MonoBehaviour
             interactPrompt.SetActive(false);
         }
 
-        if (timerRunning)
+        if (currentQuest != null && currentQuest.isActive)
         {
-            timer -= Time.unscaledDeltaTime;
-            if (timer < 0) timer = 0;
-            UpdateTimerText();
+            currentQuest.timeRemaining -= Time.unscaledDeltaTime;
+            if (currentQuest.timeRemaining <= 0f)
+            {
+                currentQuest.timeRemaining = 0f;
+                timerText.text = "00:00";
+                currentQuest.isActive = false;
+                timerText.gameObject.SetActive(false);
+                Debug.Log("Quest failed!");
+            }
+            else
+            {
+                UpdateTimerText(currentQuest.timeRemaining);
+            }
         }
-
     }
 
     void OpenPanel()
@@ -47,9 +56,14 @@ public class ShippingBox : MonoBehaviour
         questPanel.SetActive(true);
         Time.timeScale = 0f;
 
-        if(questDescription != null)
+        if (currentQuest == null)
         {
-            questDescription.text = "Gather 3 apples in 60 second!";
+            currentQuest = GetRandomQuest();
+        }
+
+        if (questDescription != null && currentQuest != null)
+        {
+            questDescription.text = currentQuest.description;
         }
     }
 
@@ -58,18 +72,18 @@ public class ShippingBox : MonoBehaviour
         questPanel.SetActive(false);
         Time.timeScale = 1f;
 
-        if (!timerRunning)
+        if (currentQuest != null && !currentQuest.isActive)
         {
-            timer = questTime;
-            timerRunning = true;
+            currentQuest.timeRemaining = currentQuest.timeLimit;
+            currentQuest.isActive = true;
             timerText.gameObject.SetActive(true);
         }
     }
 
-    void UpdateTimerText()
+    void UpdateTimerText(float time)
     {
-        int minutes = Mathf.FloorToInt(timer / 60f);
-        int seconds = Mathf.FloorToInt(timer % 60f);
+        int minutes = Mathf.FloorToInt(time / 60f);
+        int seconds = Mathf.FloorToInt(time % 60f);
         timerText.text = $"{minutes:00}:{seconds:00}";
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -90,9 +104,23 @@ public class ShippingBox : MonoBehaviour
 
     public void CompleteQuest()
     {
-        timerRunning = false;
-        timerText.gameObject.SetActive(false);
+        if (currentQuest != null && currentQuest.isActive)
+        {
+            currentQuest.isActive = false;
+            currentQuest.isCompleted = true;
+            timerText.gameObject.SetActive(false);
 
-        playerGold.AddGold(100);
+            playerGold.AddGold(currentQuest.rewardGold);
+
+            Debug.Log($"Quest completed! Earned {currentQuest.rewardGold} gold.");
+
+            currentQuest = null;
+        }
+    }
+    private Quest GetRandomQuest()
+    {
+        if (availableQuests.Count == 0) return null;
+        int randomIndex = Random.Range(0, availableQuests.Count);
+        return Instantiate(availableQuests[randomIndex]); // Instantiate to avoid modifying original
     }
 }

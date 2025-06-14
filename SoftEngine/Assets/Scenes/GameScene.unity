@@ -32391,6 +32391,18 @@ MonoBehaviour:
   questPanel: {fileID: 1211617154}
   timerText: {fileID: 408632764}
   questDescription: {fileID: 1802120038}
+  availableQuests:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerGold: {fileID: 0}
 --- !u!61 &1542441503
 BoxCollider2D:
