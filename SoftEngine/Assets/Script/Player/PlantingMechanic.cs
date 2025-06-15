@@ -9,6 +9,7 @@ public class PlantingMechanics : MonoBehaviour
 {
     public Tilemap groundTilemap;
     public TileBase plantedTile;
+    public TileBase grownTile;
 
     public GameObject eText;
 
@@ -49,6 +50,24 @@ public class PlantingMechanics : MonoBehaviour
         }
     }
 
+    public void ReplacePlantedTiles()
+    {
+        BoundsInt bounds = groundTilemap.cellBounds;
+    
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                Vector3Int cell = new Vector3Int(x, y, 0);
+                TileBase tile = groundTilemap.GetTile(cell);
+    
+                if (tile == plantedTile)
+                {
+                    groundTilemap.SetTile(cell, grownTile);
+                }
+            }
+        }
+    }
     bool IsUnplantedDirt(TileBase tile)
     {
         if (tile == null) return false;

@@ -5,30 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class PlantGrowth : MonoBehaviour
 {
-    public float growSpeed = 1f;
-    public float maxY = 0.001f;
-    private bool isGrowing = false;
+    public float growAmount = 0.1f;
+    public float maxY = 0.1f;
+    private bool isFullyGrown = false;
 
-    void Update()
+    public void Water()
     {
-        if (isGrowing && transform.position.y < maxY)
+        if (isFullyGrown) return;
+
+        Vector3 newPosition = transform.position + Vector3.up * growAmount;
+
+        newPosition.y = Mathf.Min(newPosition.y, maxY);
+        transform.position = newPosition;
+
+        if (transform.position.y >= maxY)
         {
-            transform.position += Vector3.up * growSpeed * Time.deltaTime;
-
-            if (transform.position.y >= maxY)
-            {
-                FinishMinigame();
-            }
+            isFullyGrown = true;
+            FinishMinigame();
         }
-    }
-
-    public void StartGrowing()
-    {
-        isGrowing = true;
     }
 
     void FinishMinigame()
     {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
+            if (planting != null)
+            {
+                planting.ReplacePlantedTiles();
+            }
+        }
+
         foreach (var droplet in GameObject.FindGameObjectsWithTag("Droplet"))
         {
             Destroy(droplet);

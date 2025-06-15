@@ -18,7 +18,7 @@ public class WaterDropplet : MonoBehaviour
             PlantGrowth plant = FindObjectOfType<PlantGrowth>();
             if (plant != null)
             {
-                plant.StartGrowing();
+                plant.Water();
             }
 
             Destroy(gameObject);
