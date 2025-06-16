@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2066e12c91af7645874f1d53c4bfd00, type: 3}
-  m_Name: Tomato
+  m_Name: Carrot Seed
   m_EditorClassIdentifier: 
-  itemName: Tomato
-  icon: {fileID: -1009360873, guid: 3b716f59783250742a22cc24c06ba078, type: 3}
-  itemType: 1
+  itemName: Carrot Seed
+  icon: {fileID: 1249767271, guid: c45b76689d3e77f4cad19a38ffa88e34, type: 3}
+  itemType: 0

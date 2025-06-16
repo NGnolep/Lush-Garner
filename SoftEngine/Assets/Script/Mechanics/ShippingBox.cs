@@ -5,6 +5,10 @@ using TMPro;
 using System.ComponentModel;
 public class ShippingBox : MonoBehaviour
 {
+    public Inventory playerInventory;
+    public GameObject acceptButton;
+    public GameObject submitButton;
+
     public GameObject interactPrompt;
     public GameObject questPanel;
     public TextMeshProUGUI timerText;
@@ -17,6 +21,12 @@ public class ShippingBox : MonoBehaviour
     // Update is called once per frame
 
     public PlayerGold playerGold;
+
+    public TextMeshProUGUI feedbackText;
+    public float feedbackDuration = 2f;
+
+    public HotbarUI hotbarUI;
+    public Hotbar hotbar;
     void Update()
     {
         if (isInTrigger)
@@ -63,21 +73,22 @@ public class ShippingBox : MonoBehaviour
 
         if (questDescription != null && currentQuest != null)
         {
-            questDescription.text = currentQuest.description;
+            string fullDesc = currentQuest.description;
+            foreach (var req in currentQuest.requirements)
+            {
+                fullDesc += $"\n- {req.item.itemName} x{req.amount}";
+            }
+            questDescription.text = fullDesc;
         }
+
+        acceptButton.SetActive(!currentQuest.isActive);
+        submitButton.SetActive(currentQuest.isActive);
     }
 
     public void ClosePanel()
     {
         questPanel.SetActive(false);
         Time.timeScale = 1f;
-
-        if (currentQuest != null && !currentQuest.isActive)
-        {
-            currentQuest.timeRemaining = currentQuest.timeLimit;
-            currentQuest.isActive = true;
-            timerText.gameObject.SetActive(true);
-        }
     }
 
     void UpdateTimerText(float time)
@@ -101,26 +112,116 @@ public class ShippingBox : MonoBehaviour
             isInTrigger = false;
         }
     }
-
-    public void CompleteQuest()
-    {
-        if (currentQuest != null && currentQuest.isActive)
-        {
-            currentQuest.isActive = false;
-            currentQuest.isCompleted = true;
-            timerText.gameObject.SetActive(false);
-
-            playerGold.AddGold(currentQuest.rewardGold);
-
-            Debug.Log($"Quest completed! Earned {currentQuest.rewardGold} gold.");
-
-            currentQuest = null;
-        }
-    }
     private Quest GetRandomQuest()
     {
         if (availableQuests.Count == 0) return null;
         int randomIndex = Random.Range(0, availableQuests.Count);
         return Instantiate(availableQuests[randomIndex]); // Instantiate to avoid modifying original
+    }
+
+    public void AcceptQuest()
+    {
+        if (currentQuest != null && !currentQuest.isActive)
+        {
+            currentQuest.timeRemaining = currentQuest.timeLimit;
+            currentQuest.isActive = true;
+            timerText.gameObject.SetActive(true);
+            UpdateTimerText(currentQuest.timeRemaining);
+
+            acceptButton.SetActive(false);
+            submitButton.SetActive(true);
+
+            questPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void SubmitQuest()
+    {
+        if (currentQuest != null && currentQuest.isActive)
+        {
+            bool hasAllItems = true;
+
+            foreach (QuestRequirement req in currentQuest.requirements)
+            {
+                bool found = false;
+
+                foreach (var slot in playerInventory.slots)
+                {
+                    if (slot.item == req.item && slot.quantity >= req.amount)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    hasAllItems = false;
+                    break;
+                }
+            }
+
+            if (hasAllItems)
+            {
+                // Remove required items
+                foreach (QuestRequirement req in currentQuest.requirements)
+                {
+                    for (int i = 0; i < playerInventory.slots.Count; i++)
+                    {
+                        if (playerInventory.slots[i].item == req.item)
+                        {
+                            playerInventory.slots[i].quantity -= req.amount;
+
+                            if (playerInventory.slots[i].quantity <= 0)
+                            {
+                                playerInventory.slots[i] = new InventorySlot(null, 0);
+                            }
+
+                            break;
+                        }
+                    }
+                }
+                if (hotbar != null)
+                    hotbar.SyncWithInventory(playerInventory);
+                playerGold.AddGold(currentQuest.rewardGold);
+                currentQuest.isActive = false;
+                currentQuest.isCompleted = true;
+                timerText.gameObject.SetActive(false);
+                ShowFeedback("Quest completed!");
+                currentQuest = null;
+                ClosePanel();
+            }
+            else
+            {
+                ShowFeedback("Not enough items!");
+            }
+        }
+    }
+    private int GetTotalItemCount(Item targetItem)
+    {
+        int total = 0;
+        foreach (var slot in playerInventory.slots)
+        {
+            if (slot.item == targetItem)
+            {
+                total += slot.quantity;
+            }
+        }
+        return total;
+    }
+
+    private void ShowFeedback(string message)
+    {
+        if (feedbackText == null) return;
+        feedbackText.text = message;
+        CancelInvoke(nameof(HideFeedback));
+        Invoke(nameof(HideFeedback), feedbackDuration);
+    }
+
+    private void HideFeedback()
+    {
+        if (feedbackText == null) return;
+        feedbackText.text = "";
     }
 }

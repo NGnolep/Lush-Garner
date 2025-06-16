@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   itemName: Potato
-  icon: {fileID: 0}
+  icon: {fileID: 1110470113, guid: 3b716f59783250742a22cc24c06ba078, type: 3}
+  itemType: 1

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   itemName: Carrot
-  icon: {fileID: 0}
+  icon: {fileID: 2055757568, guid: 3b716f59783250742a22cc24c06ba078, type: 3}
+  itemType: 1

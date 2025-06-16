@@ -8,6 +8,7 @@ public class ShopSystem : MonoBehaviour
     public GameObject interactPrompt;
     public GameObject shopPanel;
     public CanvasGroup shopCanvasGroup;
+    public ShopLogic shopLogic;
 
     public float fadeDuration = 0.3f;
 
@@ -46,6 +47,9 @@ public class ShopSystem : MonoBehaviour
         Time.timeScale = 0f;
         isShopOpen = true;
 
+        if (shopLogic != null)
+            shopLogic.OpenShop();
+
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {
@@ -66,6 +70,9 @@ public class ShopSystem : MonoBehaviour
             yield return null;
         }
         shopCanvasGroup.alpha = 0f;
+
+        if (shopLogic != null)
+            shopLogic.CloseShop();
 
         shopPanel.SetActive(false);
         Time.timeScale = 1f;
