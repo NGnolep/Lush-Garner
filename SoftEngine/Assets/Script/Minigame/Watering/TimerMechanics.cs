@@ -52,14 +52,14 @@ public class TimerMechanics : MonoBehaviour
         isRunning = false;
         MinigameInfo.minigameSuccess = true;
         GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
-            if (planting != null)
-            {
-                planting.ReplacePlantedTiles();
-            }
-        }
+
+        player.GetComponent<PlayerMovement>().enabled = true;
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+
+        PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
+        planting.ReplacePlantedTiles();
 
         foreach (var droplet in GameObject.FindGameObjectsWithTag("Droplet"))
         {
@@ -76,6 +76,13 @@ public class TimerMechanics : MonoBehaviour
     {
         isRunning = false;
         MinigameInfo.minigameSuccess = false;
+
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerMovement>().enabled = true;
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+
         foreach (var droplet in GameObject.FindGameObjectsWithTag("Droplet"))
         {
             Destroy(droplet);
@@ -83,7 +90,7 @@ public class TimerMechanics : MonoBehaviour
 
         SceneManager.UnloadSceneAsync("Watering");
         Time.timeScale = 1f;
-        
+
         MinigameResult result = FindObjectOfType<MinigameResult>();
         result.ShowResult(MinigameInfo.minigameSuccess);
     }

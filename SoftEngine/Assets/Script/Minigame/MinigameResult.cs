@@ -5,16 +5,14 @@ using TMPro;
 
 public class MinigameResult : MonoBehaviour
 {
-
-    public GameObject resultPanel;
     public TextMeshProUGUI resultText;
-    private float displayDuration = 2f;
+    private float displayDuration = 0.5f;
     private float timer = 0f;
     private bool showing = false;
 
     void Start()
     {
-        resultPanel.SetActive(false);
+        resultText.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -23,16 +21,22 @@ public class MinigameResult : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= displayDuration)
             {
-                resultPanel.SetActive(false);
+                resultText.gameObject.SetActive(false);
                 showing = false;
+                PlantingMechanics plantingMechanics = gameObject.GetComponent<PlantingMechanics>();
+                plantingMechanics.longShown = false;
+                plantingMechanics.shortShown = false;
             }
         }
-        Debug.Log(MinigameInfo.minigameSuccess);
     }
     public void ShowResult(bool success)
     {
-        resultPanel.SetActive(true);
-        resultText.text = success ? "Success!" : "You ran out of time!";
+        PlantingMechanics plantingMechanics = gameObject.GetComponent<PlantingMechanics>();
+        plantingMechanics.longShown = true;
+        plantingMechanics.shortShown = true;
+
+        resultText.gameObject.SetActive(true);
+        resultText.text = success ? "Success" : "You ran out of time";
         timer = 0f;
         showing = true;
     }
