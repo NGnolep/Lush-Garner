@@ -27,6 +27,8 @@ public class ShippingBox : MonoBehaviour
 
     public HotbarUI hotbarUI;
     public Hotbar hotbar;
+
+    public GameObject pausePanel;
     void Update()
     {
         if (isInTrigger)
@@ -42,6 +44,9 @@ public class ShippingBox : MonoBehaviour
         {
             interactPrompt.SetActive(false);
         }
+
+        if (pausePanel != null && pausePanel.activeSelf)
+            return;
 
         if (currentQuest != null && currentQuest.isActive)
         {

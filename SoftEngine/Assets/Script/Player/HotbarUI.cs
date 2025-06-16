@@ -23,7 +23,7 @@ public class HotbarUI : MonoBehaviour
             {
                 itemIcons[i].sprite = slot.item.icon;
                 itemIcons[i].enabled = true;
-                quantities[i].text = slot.quantity > 1 ? slot.quantity.ToString() : "";
+                quantities[i].text = slot.quantity > 0 ? slot.quantity.ToString() : "";
             }
             else
             {
