@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WateringCan : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class WateringCan : MonoBehaviour
 
     private Quaternion originalRotation;
     private Quaternion tiltedRotation;
+    public GameObject UI;
 
     void Start()
     {
@@ -27,6 +29,8 @@ public class WateringCan : MonoBehaviour
     {
         isHolding = Input.GetMouseButton(0);
 
+        UI.SetActive(!isHolding);
+        
         Quaternion desiredRotation = isHolding ? tiltedRotation : originalRotation;
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * tiltSpeed);
 
