@@ -180,7 +180,7 @@ public class ShippingBox : MonoBehaviour
 
                             if (playerInventory.slots[i].quantity <= 0)
                             {
-                                playerInventory.slots[i] = new InventorySlot(null, 0);
+                                playerInventory.slots[i].quantity = 0;
                             }
 
                             break;
