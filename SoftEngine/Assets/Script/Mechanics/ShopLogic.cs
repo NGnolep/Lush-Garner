@@ -44,6 +44,10 @@ public class ShopLogic : MonoBehaviour
         { "Corn Seed", 3 }
     };
 
+    void Update()
+    {
+        UpdateGoldUI();    
+    }
     void Start()
     {
         foreach (var shopItem in shopItems)
