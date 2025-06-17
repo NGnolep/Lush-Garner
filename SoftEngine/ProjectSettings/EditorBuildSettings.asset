@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Harvesting.unity
     guid: 75eb25b080f032647b0abec4da6e64d7
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 3852864f77dd21a4489a8d66a8ab6b1a
   m_configObjects: {}

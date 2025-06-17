@@ -58,6 +58,7 @@ public class ShippingBox : MonoBehaviour
                 currentQuest.isActive = false;
                 timerText.gameObject.SetActive(false);
                 Debug.Log("Quest failed!");
+                FindObjectOfType<GameOverHandler>().TriggerGameOver();
             }
             else
             {

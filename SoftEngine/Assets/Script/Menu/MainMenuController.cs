@@ -15,4 +15,9 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
         //UnityEditor.EditorApplication.isPlaying = false;
     }
+
+    public void OpenTutorial()
+    {
+
+    }
 }
