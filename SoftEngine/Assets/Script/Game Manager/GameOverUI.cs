@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private string gameSceneName = "GameScene";
+    [SerializeField] private string game2SceneName = "MainMenu";
 
     // Called by "Play Again" button
     public void PlayAgain()
@@ -16,6 +17,6 @@ public class GameOverUI : MonoBehaviour
     // Called by "Quit" button
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene(game2SceneName);
     }
 }
