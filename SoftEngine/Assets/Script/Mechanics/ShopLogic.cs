@@ -54,6 +54,7 @@ public class ShopLogic : MonoBehaviour
 
             shopItem.plusButton.onClick.AddListener(() =>
             {
+                SFXManager.Instance.PlayButton();
                 localItem.quantityToBuy++;
                 localItem.UpdateQuantityText();
                 UpdateTotalCost();
@@ -61,6 +62,7 @@ public class ShopLogic : MonoBehaviour
 
             shopItem.minusButton.onClick.AddListener(() =>
             {
+                SFXManager.Instance.PlayButton();
                 localItem.quantityToBuy = Mathf.Max(0, localItem.quantityToBuy - 1);
                 localItem.UpdateQuantityText();
                 UpdateTotalCost();
@@ -81,6 +83,7 @@ public class ShopLogic : MonoBehaviour
 
     public void OpenShop()
     {
+        SFXManager.Instance.PlayButton();
         UpdateGoldUI();
         UpdateTotalCost();
     }
@@ -122,6 +125,8 @@ public class ShopLogic : MonoBehaviour
         if (playerGold.currentGold < totalCost)
         {
             ShowFeedback("Not enough gold!");
+            SFXManager.Instance.PlayButton();
+            SFXManager.Instance.PlayIncorrect();
             return;
         }
 
@@ -142,7 +147,8 @@ public class ShopLogic : MonoBehaviour
         UpdateGoldUI();
         UpdateTotalCost();
         ShowFeedback("Purchased!");
-
+        SFXManager.Instance.PlayButton();
+        SFXManager.Instance.PlayPurchase();
         FindObjectOfType<Hotbar>()?.SyncWithInventory(playerInventory);
     }
 

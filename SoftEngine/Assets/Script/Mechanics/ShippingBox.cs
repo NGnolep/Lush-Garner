@@ -69,6 +69,7 @@ public class ShippingBox : MonoBehaviour
 
     void OpenPanel()
     {
+        SFXManager.Instance.PlayButton();
         questPanel.SetActive(true);
         Time.timeScale = 0f;
 
@@ -93,6 +94,7 @@ public class ShippingBox : MonoBehaviour
 
     public void ClosePanel()
     {
+        SFXManager.Instance.PlayButton();
         questPanel.SetActive(false);
         Time.timeScale = 1f;
     }
@@ -129,6 +131,7 @@ public class ShippingBox : MonoBehaviour
     {
         if (currentQuest != null && !currentQuest.isActive)
         {
+            SFXManager.Instance.PlayButton();
             currentQuest.timeRemaining = currentQuest.timeLimit;
             currentQuest.isActive = true;
             timerText.gameObject.SetActive(true);
@@ -190,6 +193,7 @@ public class ShippingBox : MonoBehaviour
                 }
                 if (hotbar != null)
                     hotbar.SyncWithInventory(playerInventory);
+                SFXManager.Instance.PlayButton();
                 playerGold.AddGold(currentQuest.rewardGold);
                 currentQuest.isActive = false;
                 currentQuest.isCompleted = true;
@@ -200,6 +204,8 @@ public class ShippingBox : MonoBehaviour
             }
             else
             {
+                SFXManager.Instance.PlayButton();
+                SFXManager.Instance.PlayIncorrect();
                 ShowFeedback("Not enough items!");
             }
         }

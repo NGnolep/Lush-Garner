@@ -57,6 +57,7 @@ public class PlantingMechanics : MonoBehaviour
                 var selectedItem = hotbar.GetSelectedItem();
                 if (selectedItem != null && selectedItem.itemType == ItemType.Seed && GetItemQuantityInInventory(selectedItem) > 0)
                 {
+                    SFXManager.Instance.PlayPlanting();
                     groundTilemap.SetTile(cellPos, plantedTile);
                     plantedSeeds[cellPos] = selectedItem; // Track which seed was planted here
                     RemoveItemFromInventory(selectedItem, 1);
@@ -68,14 +69,17 @@ public class PlantingMechanics : MonoBehaviour
             }
             else if (currentTile == plantedTile)
             {
+                BGMPlayer.Instance.FadeOutBGM();
                 SceneManager.LoadScene("Watering", LoadSceneMode.Additive);
             }
             else if (currentTile == grownTile)
             {
+                BGMPlayer.Instance.FadeOutBGM();
                 SceneManager.LoadScene("InsectDefend", LoadSceneMode.Additive);
             }
             else if (currentTile == IsAnyGrownTile(currentTile))
             {
+                BGMPlayer.Instance.FadeOutBGM();
                 SceneManager.LoadScene("Harvesting", LoadSceneMode.Additive);
             }
         }

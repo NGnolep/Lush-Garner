@@ -30,6 +30,7 @@ public class InsectAI : MonoBehaviour
 
     void OnMouseDown()
     {
+        SquashSFX.Instance.PlaySquashSound();
         spawner.insectAlive--;
         Destroy(gameObject);
     }

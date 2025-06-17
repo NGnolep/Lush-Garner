@@ -41,6 +41,7 @@ public class PlantMech : MonoBehaviour
         if (basket.IsInsideBasket(plantCollider))
         {
             manager?.OnPlantHarvested();
+            HarvestSFX.Instance.PlayHarvestSound();
             Destroy(gameObject);
         }
     }

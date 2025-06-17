@@ -41,6 +41,7 @@ public class WateringCan : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= fireRate)
             {
+                WateringSFX.Instance.PlayWaterSound();
                 Instantiate(dropletPrefab, dropletSpawnPoint.position, Quaternion.identity);
                 timer = 0f;
             }

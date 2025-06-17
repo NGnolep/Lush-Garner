@@ -8,7 +8,6 @@ public class MinigameManager : MonoBehaviour
     public void ReturnToMainGame()
     {
         SceneManager.UnloadSceneAsync("Watering");
-
         Time.timeScale = 1f;
     }
 }

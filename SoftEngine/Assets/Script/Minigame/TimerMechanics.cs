@@ -95,10 +95,10 @@ public class TimerMechanics : MonoBehaviour
                 planting.ResetAllHarvestedTiles();
             }
         }
-        
 
-        
 
+
+        BGMPlayer.Instance.FadeInBGM();
         SceneManager.UnloadSceneAsync(minigame);
         Time.timeScale = 1f;
 

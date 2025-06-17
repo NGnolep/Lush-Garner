@@ -43,6 +43,7 @@ public class ShopSystem : MonoBehaviour
     }
     IEnumerator OpenShop()
     {
+        SFXManager.Instance.PlayButton();
         shopPanel.SetActive(true);
         Time.timeScale = 0f;
         isShopOpen = true;
@@ -74,6 +75,7 @@ public class ShopSystem : MonoBehaviour
         if (shopLogic != null)
             shopLogic.CloseShop();
 
+        SFXManager.Instance.PlayButton();
         shopPanel.SetActive(false);
         Time.timeScale = 1f;
         isShopOpen = false;
