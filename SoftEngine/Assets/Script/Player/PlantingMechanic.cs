@@ -33,6 +33,10 @@ public class PlantingMechanics : MonoBehaviour
     public Item corn;
     public Item tomato;
 
+    public TileBase potatoGrownTile;
+    public TileBase carrotGrownTile;
+    public TileBase cornGrownTile;
+    public TileBase tomatoGrownTile;
     void Start()
     {
         hotbar = FindObjectOfType<Hotbar>();
@@ -70,7 +74,7 @@ public class PlantingMechanics : MonoBehaviour
             {
                 SceneManager.LoadScene("InsectDefend", LoadSceneMode.Additive);
             }
-            else if (currentTile == insectFreeTile)
+            else if (currentTile == IsAnyGrownTile(currentTile))
             {
                 SceneManager.LoadScene("Harvesting", LoadSceneMode.Additive);
             }
@@ -109,7 +113,7 @@ public class PlantingMechanics : MonoBehaviour
             longText.text = "to Defend";
             longShown = true;
         }
-        else if (currentTile == insectFreeTile)
+        else if (currentTile == IsAnyGrownTile(currentTile))
         {
             longText.gameObject.SetActive(true);
             longText.text = "to Harvest";
@@ -120,14 +124,14 @@ public class PlantingMechanics : MonoBehaviour
     public void ReplacePlantedTiles()
     {
         BoundsInt bounds = groundTilemap.cellBounds;
-    
+
         for (int x = bounds.xMin; x < bounds.xMax; x++)
         {
             for (int y = bounds.yMin; y < bounds.yMax; y++)
             {
                 Vector3Int cell = new Vector3Int(x, y, 0);
                 TileBase tile = groundTilemap.GetTile(cell);
-    
+
                 if (tile == plantedTile)
                 {
                     if (plantedSeeds.ContainsKey(cell))
@@ -150,7 +154,15 @@ public class PlantingMechanics : MonoBehaviour
                 Vector3Int cell = new Vector3Int(x, y, 0);
                 if (groundTilemap.GetTile(cell) == grownTile)
                 {
-                    groundTilemap.SetTile(cell, insectFreeTile);
+                    if (plantedSeeds.TryGetValue(cell, out Item seed))
+                    {
+                        TileBase grown = GetGrownTileFromSeed(seed);
+                        if (grown != null)
+                        {
+                            groundTilemap.SetTile(cell, grown);
+                            Debug.Log("Grew " + seed.itemName + " at " + cell);
+                        }
+                    }
                 }
             }
         }
@@ -165,9 +177,11 @@ public class PlantingMechanics : MonoBehaviour
             for (int y = bounds.yMin; y < bounds.yMax; y++)
             {
                 Vector3Int cell = new Vector3Int(x, y, 0);
-                if (groundTilemap.GetTile(cell) == insectFreeTile)
+                TileBase currentTile = groundTilemap.GetTile(cell);
+
+                if (IsAnyGrownTile(currentTile))
                 {
-                    if(plantedSeeds.TryGetValue(cell, out Item seed))
+                    if (plantedSeeds.TryGetValue(cell, out Item seed))
                     {
                         Item harvest = GetHarvestItemFromSeed(seed);
                         if (harvest != null)
@@ -177,7 +191,8 @@ public class PlantingMechanics : MonoBehaviour
                         }
                         plantedSeeds.Remove(cell);
                     }
-                    groundTilemap.SetTile(cell, resetTile);
+
+                    groundTilemap.SetTile(cell, resetTile); // back to plantable dirt
                 }
             }
         }
@@ -237,5 +252,22 @@ public class PlantingMechanics : MonoBehaviour
 
         Debug.LogWarning("No harvest match for: " + seed.itemName);
         return null;
+    }
+    TileBase GetGrownTileFromSeed(Item seed)
+    {
+        if (seed == potatoSeed) return potatoGrownTile;
+        if (seed == carrotSeed) return carrotGrownTile;
+        if (seed == cornSeed) return cornGrownTile;
+        if (seed == tomatoSeed) return tomatoGrownTile;
+
+        Debug.LogWarning("No grown tile for seed: " + seed.itemName);
+        return grownTile; // fallback
+    }
+    bool IsAnyGrownTile(TileBase tile)
+    {
+        return tile == potatoGrownTile ||
+               tile == carrotGrownTile ||
+               tile == cornGrownTile ||
+               tile == tomatoGrownTile;
     }
 }

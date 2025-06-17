@@ -39258,8 +39258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTilemap: {fileID: 1239962852}
-  plantedTile: {fileID: 11400000, guid: 313293cb1a8b96d4e88e52d22512ae13, type: 2}
-  grownTile: {fileID: 11400000, guid: ef16c6dad104e1142a4a8c15ebe8874b, type: 2}
+  plantedTile: {fileID: 11400000, guid: ef16c6dad104e1142a4a8c15ebe8874b, type: 2}
+  grownTile: {fileID: 11400000, guid: 5e3ce94af69e7f84e80be2f1f4c6a960, type: 2}
   insectFreeTile: {fileID: 11400000, guid: 7b856de593d74a646b95d289139ae1d2, type: 2}
   resetTile: {fileID: 11400000, guid: 6d45646409d7c5f4b91f2fc8a7738eed, type: 2}
   shortText: {fileID: 1560711664}
@@ -39274,6 +39274,10 @@ MonoBehaviour:
   carrot: {fileID: 11400000, guid: 3ea25b82eb5046b48ad59de3649610df, type: 2}
   corn: {fileID: 11400000, guid: 6dd8bc19f47b11742975269cab213d0e, type: 2}
   tomato: {fileID: 11400000, guid: 0337fff9ae0bfc746951ca30c416da89, type: 2}
+  potatoGrownTile: {fileID: 11400000, guid: ff3f504b03bd3c24d9b9bb2d27731335, type: 2}
+  carrotGrownTile: {fileID: 11400000, guid: bd55bc379f5029a419451049c063cee2, type: 2}
+  cornGrownTile: {fileID: 11400000, guid: fdd629715a5bcce418e6aac85c735023, type: 2}
+  tomatoGrownTile: {fileID: 11400000, guid: 8812d8edbfbafb74abb2a64f70a34111, type: 2}
 --- !u!114 &1903400465
 MonoBehaviour:
   m_ObjectHideFlags: 0
