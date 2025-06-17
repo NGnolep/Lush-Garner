@@ -64,32 +64,15 @@ public class PlantingMechanics : MonoBehaviour
             }
             else if (currentTile == plantedTile)
             {
-                // GameObject player = GameObject.FindWithTag("Player");
-                // player.GetComponent<PlayerMovement>().enabled = false;
-
-                // Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-                // rb.isKinematic = true;
                 SceneManager.LoadScene("Watering", LoadSceneMode.Additive);
             }
             else if (currentTile == grownTile)
             {
-                ReplaceGrownTiles();
-                // GameObject player = GameObject.FindWithTag("Player");
-                // player.GetComponent<PlayerMovement>().enabled = false;
-
-                // Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-                // rb.isKinematic = true;
                 SceneManager.LoadScene("InsectDefend", LoadSceneMode.Additive);
             }
             else if (currentTile == insectFreeTile)
             {
-                ResetAllHarvestedTiles();
-                // GameObject player = GameObject.FindWithTag("Player");
-                // player.GetComponent<PlayerMovement>().enabled = false;
-
-                // Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-                // rb.isKinematic = true;
-                SceneManager.LoadScene("Harvest", LoadSceneMode.Additive);
+                SceneManager.LoadScene("Harvesting", LoadSceneMode.Additive);
             }
         }
     }

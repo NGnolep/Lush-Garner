@@ -23,7 +23,8 @@ public class PlantGrowth : MonoBehaviour
         if (transform.position.y >= maxY)
         {
             isFullyGrown = true;
-            timerMechanics.SuccessMinigame();
+            MinigameInfo.minigameSuccess = true;
+            timerMechanics.MinigameOutcome("Watering");
         }
     }
 }
