@@ -37,6 +37,7 @@ public class PlantingMechanics : MonoBehaviour
     public TileBase carrotGrownTile;
     public TileBase cornGrownTile;
     public TileBase tomatoGrownTile;
+    public bool sceneOpen = false;
     void Start()
     {
         hotbar = FindObjectOfType<Hotbar>();
@@ -67,20 +68,23 @@ public class PlantingMechanics : MonoBehaviour
                     Debug.Log("No seed selected or out of stock!");
                 }
             }
-            else if (currentTile == plantedTile)
+            else if (currentTile == plantedTile && !sceneOpen)
             {
                 BGMPlayer.Instance.FadeOutBGM();
                 SceneManager.LoadScene("Watering", LoadSceneMode.Additive);
+                sceneOpen = true;
             }
-            else if (currentTile == grownTile)
+            else if (currentTile == grownTile && !sceneOpen)
             {
                 BGMPlayer.Instance.FadeOutBGM();
                 SceneManager.LoadScene("InsectDefend", LoadSceneMode.Additive);
+                sceneOpen = true;
             }
-            else if (currentTile == IsAnyGrownTile(currentTile))
+            else if (currentTile == IsAnyGrownTile(currentTile) && !sceneOpen)
             {
                 BGMPlayer.Instance.FadeOutBGM();
                 SceneManager.LoadScene("Harvesting", LoadSceneMode.Additive);
+                sceneOpen = true;
             }
         }
     }

@@ -65,6 +65,7 @@ public class TimerMechanics : MonoBehaviour
     {
         isRunning = false;
         GameObject player = GameObject.FindWithTag("Player");
+        PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
 
         if (minigame == "Watering")
         {
@@ -75,7 +76,6 @@ public class TimerMechanics : MonoBehaviour
 
             if (MinigameInfo.minigameSuccess)
             {
-                PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
                 planting.ReplacePlantedTiles();
             }
         }
@@ -83,7 +83,6 @@ public class TimerMechanics : MonoBehaviour
         {
             if (MinigameInfo.minigameSuccess)
             {
-                PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
                 planting.ReplaceGrownTiles();
             }
         }
@@ -91,7 +90,6 @@ public class TimerMechanics : MonoBehaviour
         {
             if (MinigameInfo.minigameSuccess)
             {
-                PlantingMechanics planting = player.GetComponent<PlantingMechanics>();
                 planting.ResetAllHarvestedTiles();
             }
         }
@@ -101,7 +99,8 @@ public class TimerMechanics : MonoBehaviour
         BGMPlayer.Instance.FadeInBGM();
         SceneManager.UnloadSceneAsync(minigame);
         Time.timeScale = 1f;
-
+        
+        planting.sceneOpen = false;
         MinigameResult result = FindObjectOfType<MinigameResult>();
         result.ShowResult(MinigameInfo.minigameSuccess);
     }
