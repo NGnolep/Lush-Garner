@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22d3f0de745a7dc4690c02ef9ed3650e
+guid: dff4562494474784398275bafe98e5e3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 47
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: watering-bg_0
+      name: Planter_crops_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 31
-        width: 256
-        height: 129
+        y: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5179fcd393ee50548bccb6787ab7a436
-      internalID: 709666007
+      spriteID: 9b3da948677ef7048b888ec497d77891
+      internalID: 1884382970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: watering-bg_1
+      name: Planter_crops_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 31
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03128233f11fca74a8d3c7c13dba6e71
-      internalID: -299070778
+      spriteID: f6b10ffd23a32e04b8dc314e68eaf038
+      internalID: 910062424
       vertices: []
       indices: 
       edges: []
@@ -149,8 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      watering-bg_0: 709666007
-      watering-bg_1: -299070778
+      Planter_crops_0: 1884382970
+      Planter_crops_1: 910062424
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
