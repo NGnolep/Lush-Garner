@@ -38,7 +38,7 @@ Lush Garner, A game that helps people realize how hard it is to be a farmer in t
 <br>
 
 ```
-├── Sive2                             # Contain everything needed for Please Survive to works.
+├── Lush-Garner                       # Contain everything needed for Please Survive to works.
    ├── .vscode                        # Contains configuration files for Visual Studio Code (VSCode) when it's used as the code editor for the project.
       ├── extensions.json             # Contains settings and configurations for debugging, code formatting, and IntelliSense. This folder is related to Visual Studio Code integration.
       ├── launch.json                 # Contains the configuration necessary to start debugging Unity C# scripts within VSCode.                     
