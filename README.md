@@ -12,6 +12,7 @@
 ##  Scripts and Features
 
 A lot of feature in the game like walking, shopping, planting, watering and so much more can be done thanks to tons of scripts that has been implemented to the game.<br>
+
 Here are some of the main mechanic in this game
 |  Script       | Description                                                  |
 | ------------------- | ------------------------------------------------------------ |
@@ -26,11 +27,11 @@ Here are some of the main mechanic in this game
 <br>
 
 ## About
-Lush Garner, A game that helps people realize how hard it is to be a farmer in these days and how it is needed by a lot of people
+Lush Garner, A game that helps people realize how hard it is to be a farmer in these days and how it is needed by a lot of people. Player are tasked to get quest to earn more currency and compleyte this task to live for another day. They are asked to farm the crops that is tasked to the from the task box.
 <br>
 
 ## Developer & Contributions
-- Nhoel Goei (Game Programmer)
+- Nhoel Goei (Inventory, Shop, Player, Currency Programmer)
 - Bryant Chandra (Game Programmer)
 - Pieter Nathanael (Game Designer and Audio)
 - Leonardi (2D Game Artist)
